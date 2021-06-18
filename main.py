@@ -74,10 +74,10 @@ async def on_message(message):
     if message.author.bot:
         return
     
-    if message.author.id in ignore_ids:
+    if message.channel.id != CHANNEL1_ID and message.channel.id != CHANNEL2_ID:
         return
     
-    if message.channel.id != CHANNEL1_ID and message.channel.id != CHANNEL2_ID:
+    if message.author.id in ignore_ids:
         return
     
     msg = message.content
@@ -100,6 +100,14 @@ async def on_message(message):
         msg = message.content
         await web_hook(message, msg, url, display_name, author_thumbnail)
     else:
+        d_task = asyncio.create_task(g.detect(msg))
+        detect = await d_task
+        detect = detect[0]
+        
+        if detect == lang_tgt:
+            await web_hook(message, msg, url, display_name, author_thumbnail)
+            return
+        
         translated = ''
         gas_use = False
         
