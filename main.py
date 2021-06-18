@@ -105,6 +105,7 @@ async def on_message(message):
         detect = detect[0]
         
         if detect == lang_tgt:
+            msg = message.content
             await web_hook(message, msg, url, display_name, author_thumbnail)
             return
         
