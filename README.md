@@ -15,10 +15,10 @@ Translate into each other's language using two channels
 |DISCORD_TOKEN|Discord bot Token|
 |CHANNEL1_ID|1st channel ID(integer)|
 |CHANNEL1_URL|Webhook URL for the 1st channel|
-|CHANNEL1_LANG|Language of the 1st channel|
+|CHANNEL1_LANG|Language of the 1st channel(e.g. en)|
 |CHANNEL2_ID|2nd channel ID|
 |CHANNEL2_URL|Webhook URL for the 2nd channel|
-|CHANNEL2_LANG|Language of the 2nd channel|
+|CHANNEL2_LANG|Language of the 2nd channel(e.g. ja)|
   
 |Options(オプション)||
 |---|---|
