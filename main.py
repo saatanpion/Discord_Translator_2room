@@ -35,8 +35,8 @@ try:
 except:
     ignore_ids = []
 
-del_word = [r"<a?:\w+?:\d+?>",r"<@! \d+>",r"^(.)\1+$",r"https?://[\w!\?/\+\-_~=;\.,\*&@#\$%\(\)'\[\]]+",
-    r"^!.*",r"^w$",r"^ｗ$",r"ww+",r"ｗｗ+",r"^\s+",r"\s+$"]
+del_word = [r"<a?:\w+?:\d+?>",r"<@!\d+>",r"^(.)\1+$",r"https?://[\w!\?/\+\-_~=;\.,\*&@#\$%\(\)'\[\]]+",
+    r"^!.*",r"ww+",r"ｗｗ+",r"^\s+",r"\s+$"]
 
 del_word_compiled = [re.compile(w) for w in del_word]
 
