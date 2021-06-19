@@ -1,0 +1,50 @@
+{
+    "name": "Discord Translator 2Room",
+    "description": "Discord translation bot.",
+    "repository": "https://github.com/Charahiro-tan/Discord_Translator_2room",
+    "logo": "",
+    "keywords": [
+        "discord",
+        "translation"
+    ],
+    "env":{
+        "DISCORD_TOKEN":{
+            "description": "Discord bot token(ボットのトークン)",
+            "required": true
+        },
+        "CHANNEL1_ID":{
+            "description": "ID of the first channel(int)(1つ目のチャンネルのID(整数))",
+            "required": true
+        },
+        "CHANNEL1_URL":{
+            "description": "Webhook URL for the first channel(1つ目のチャンネルのWebhookURL)",
+            "required": true
+        },
+        "CHANNEL1_LANG":{
+            "description": "Languages used in the first channel(1つ目のチャンネルで使う言語)",
+            "value": "ja",
+            "required": true
+        },
+        "CHANNEL2_ID":{
+            "description": "ID of the second channel(int)(2つ目のチャンネルのID(整数))",
+            "required": true
+        },
+        "CHANNEL2_URL":{
+            "description": "Webhook URL for the second channel(2つ目のチャンネルのWebhookURL)",
+            "required": true
+        },
+        "CHANNEL2_LANG":{
+            "description": "Language used in second channel(2つ目のチャンネルで使う言語)",
+            "value": "en",
+            "required": true
+        },
+        "GAS_URL":{
+            "description": "When using Google Apps Script translation, use the URL(GASでデプロイした翻訳を使うときはURLを入力)",
+            "required": false
+        },
+        "IGNORE_ID":{
+            "description": "If there is a user you want to ignore, enter the ID(int) separated by a colon(無視ユーザーのID(数字)を':'区切りで入力",
+            "required": false
+        }
+    }
+}
