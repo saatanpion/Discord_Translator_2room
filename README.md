@@ -1,4 +1,4 @@
-# Discord_Translator_2room
+# Discord_Translator_2room [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 Discord translator that posts with webhooks that can be deployed on Heroku  
 Herokuの無料枠にデプロイできるDiscordの翻訳Botです。  
 詳しい使い方はDiscordサーバーに書いてあります。  
