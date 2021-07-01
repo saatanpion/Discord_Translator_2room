@@ -2,6 +2,8 @@ import asyncio
 import os
 import re
 
+from discord.message import Message
+
 from async_google_trans_new import AsyncTranslator
 import discord
 import aiohttp
@@ -57,7 +59,7 @@ async def gas_translate(msg, lang_tgt, lang_src):
                     gas_use = True
             return translated_text, gas_use
 
-async def web_hook(message, msg, url, author, thumbnail):
+async def web_hook(message: Message, msg, url, author, thumbnail):
     headers = {'Content-Type': 'application/json'}
     data = {
         "username"   : author,
@@ -70,7 +72,7 @@ async def web_hook(message, msg, url, author, thumbnail):
                 await message.channel.send('Webhookの送信に失敗しました')
 
 @client.event
-async def on_message(message):
+async def on_message(message: Message):
     if message.author.bot:
         return
     
@@ -100,8 +102,7 @@ async def on_message(message):
         msg = message.content
         await web_hook(message, msg, url, display_name, author_thumbnail)
     else:
-        d_task = asyncio.create_task(g.detect(msg))
-        detect = await d_task
+        detect = await g.detect(msg)
         detect = detect[0]
         
         if detect == lang_tgt:
@@ -115,8 +116,7 @@ async def on_message(message):
         if GAS_URL:
             translated, gas_use = await gas_translate(msg, lang_tgt, lang_src)
         if not translated:
-            trans_task = asyncio.create_task(g.translate(msg, lang_tgt,lang_src))
-            translated = await trans_task
+            translated = await g.translate(msg, lang_tgt, lang_src)
         
         if not translated:
             return
