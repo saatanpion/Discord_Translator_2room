@@ -9,6 +9,11 @@ import discord
 import aiohttp
 import ujson
 
+import deepl
+
+deepl_lang_dict = {'de':'DE', 'en':'EN', 'fr':'FR', 'es':'ES', 'pt':'PT', 'it':'IT', 'nl':'NL', 'pl':'PL', 'ru':'RU', 'ja':'JA', 'zh-CN':'ZH'}
+
+
 client = discord.Client(activity=discord.Game(name='neko2.net/juroom_ug'))
 g = AsyncTranslator(url_suffix='co.jp')
 
@@ -81,14 +86,18 @@ async def on_message(message: Message):
     
     if message.author.id in ignore_ids:
         return
-    
+
     msg = message.content
     for r in del_word_compiled:
         msg = r.sub('', msg)
     
     display_name = message.author.display_name
     author_thumbnail = message.author.avatar_url.BASE + message.author.avatar_url._url
-    
+
+    if message.content == '!ver':
+        await web_hook(message, 'charahiroBot: DeepL', CHANNEL1_URL, display_name, author_thumbnail)
+        return 
+
     if message.channel.id == CHANNEL1_ID:
         url = CHANNEL2_URL
         lang_src = CHANNEL1_LANG
@@ -116,8 +125,9 @@ async def on_message(message: Message):
         if GAS_URL:
             translated, gas_use = await gas_translate(msg, lang_tgt, lang_src)
         if not translated:
-            translated = await g.translate(msg, lang_tgt, lang_src)
-        
+            # translated = await g.translate(msg, lang_tgt, lang_src)
+            translated = deepl.translate(source_language=deepl_lang_dict[lang_src], target_language=deepl_lang_dict[lang_tgt], text=msg)
+
         if not translated:
             return
         
